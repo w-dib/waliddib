@@ -1,91 +1,64 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
+import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+    <main className="flex flex-col bg-slate-50 items-center w-full h-screen px-12">
+      <div className="mt-20 md:mt-32 w-40 h-40">
+        <Image src="/bio.png" alt="bio" width={200} height={200} />
+      </div>
+      <div className=" text-justify max-w-lg mt-12">
+        <h1 className="font-bold text-2xl mb-2">About</h1>
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
+          I founded and{" "}
+          <span>
+            <a
+              href="https://gulftimesarabia.com/xa-group-acquires-addenda-mirsaas-to-extend-its-digital-offerings-in-the-region/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              sold
+            </a>{" "}
+          </span>
+          a blockchain B2B InsurTech called Addenda, and was named Forbes 30
+          under 30 MENA in 2021. I later{" "}
+          <span>
+            <a
+              href="https://www.wamda.com/2021/08/hala-raises-5-million"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              raised
+            </a>
+          </span>{" "}
+          5M USD for another B2C InsurTech called Hala Insurance, which sold 3M
+          USD in policies, but ultimately returned investor funds and shut down.
+          Currently learning to code as a hobbyist using Firebase, Next.js, and
+          TailwindCSS.
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
+      <div className="flex mt-12 justify-around w-64">
         <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
+          href="https://www.linkedin.com/in/wdanieldib/"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
+          <AiFillLinkedin className="h-12 w-12 hover:cursor-pointer hover:text-gray-400" />
         </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
+        <a href="https://github.com/w-dib" target="_blank" rel="noreferrer">
+          <AiFillGithub className="h-12 w-12 hover:cursor-pointer hover:text-gray-400" />
         </a>
-
         <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
+          href="mailto:wdanieldib@gmail.com"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
+          className="hover:cursor-pointer hover:text-gray-400"
         >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
+          <AiOutlineMail className="h-12 w-12" />
         </a>
       </div>
     </main>
-  )
+  );
 }
