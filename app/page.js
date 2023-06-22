@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
+import { getSanityClient } from "../sanity/sanity-utils";
 
-export default function Home() {
+export default async function Home() {
+  const client = await getSanityClient();
   return (
     <main className="flex flex-col bg-slate-50 items-center w-full h-screen px-12">
       <div className="mt-20 md:mt-32 w-40 h-40">
@@ -58,6 +60,15 @@ export default function Home() {
         >
           <AiOutlineMail className="h-12 w-12" />
         </a>
+      </div>
+
+      <div>
+        {client.map((post) => (
+          <div key={post.slug.current}>
+            <h1>{post.title}</h1>
+            <p>{post.body}</p>
+          </div>
+        ))}
       </div>
     </main>
   );
