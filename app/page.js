@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
 import { getSanityClient } from "../sanity/sanity-utils";
@@ -5,10 +6,19 @@ import { getSanityClient } from "../sanity/sanity-utils";
 export default async function Home() {
   const client = await getSanityClient();
   // console.log(client);
+  function formatPublishedDate(publishedAt) {
+    const date = new Date(publishedAt);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
 
   return (
     <main className="flex flex-col bg-slate-50 items-center w-full h-screen px-12">
-      <div className="mt-20 md:mt-32 w-40 h-40">
+      {/* About Me */}
+      <div className="mt-12 w-40 h-40">
         <Image src="/bio.png" alt="bio" width={200} height={200} />
       </div>
       <div className=" text-justify max-w-lg mt-12">
@@ -43,22 +53,35 @@ export default async function Home() {
           TailwindCSS.
         </p>
       </div>
-      <div
-        className="flex flex-row gap-4 mt-12 max-w-lg         border-black;
-        border-radius: 8px;
-        transition: all 0.3s;"
-      >
-        {client.map((post) => (
-          <div key={post._id} className="">
-            <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
-            <img
-              src={post.mainImage}
-              className="w-64 h-64 object-cover"
-              alt="main"
-            />
-          </div>
-        ))}
+
+      {/* Blog cards */}
+      <div className="mt-12">
+        <h1 className="font-bold text-2xl mb-2">Sometimes I write stuff</h1>
+        <div className="flex md:flex-nowrap flex-wrap gap-4 max-w-lg sm:justify-start">
+          {client.map((post) => (
+            <div
+              key={post._id}
+              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            >
+              <div className="mb-6">
+                <img
+                  src={post.mainImage}
+                  className="rounded-t-lg w-full h-56 object-cover"
+                  alt="Blog Cover"
+                />
+              </div>
+              <h3 className="ml-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {post.title}
+              </h3>
+              <p className="text-gray-500 text-sm ml-2">
+                {formatPublishedDate(post.publishedAt)}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Contact Me */}
       <div className="flex mt-12 justify-around w-64">
         <a
           href="https://www.linkedin.com/in/wdanieldib/"
