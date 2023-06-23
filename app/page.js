@@ -61,7 +61,7 @@ export default async function Home() {
           {client.map((post) => (
             <div
               key={post._id}
-              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
             >
               <div className="mb-6">
                 <img
@@ -70,6 +70,7 @@ export default async function Home() {
                   alt="Blog Cover"
                 />
               </div>
+
               <h3 className="ml-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {post.title}
               </h3>
