@@ -4,6 +4,8 @@ import { getSanityClient } from "../sanity/sanity-utils";
 
 export default async function Home() {
   const client = await getSanityClient();
+  // console.log(client);
+
   return (
     <main className="flex flex-col bg-slate-50 items-center w-full h-screen px-12">
       <div className="mt-20 md:mt-32 w-40 h-40">
@@ -41,6 +43,22 @@ export default async function Home() {
           TailwindCSS.
         </p>
       </div>
+      <div
+        className="flex flex-row gap-4 mt-12 max-w-lg         border-black;
+        border-radius: 8px;
+        transition: all 0.3s;"
+      >
+        {client.map((post) => (
+          <div key={post._id} className="">
+            <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
+            <img
+              src={post.mainImage}
+              className="w-64 h-64 object-cover"
+              alt="main"
+            />
+          </div>
+        ))}
+      </div>
       <div className="flex mt-12 justify-around w-64">
         <a
           href="https://www.linkedin.com/in/wdanieldib/"
@@ -60,15 +78,6 @@ export default async function Home() {
         >
           <AiOutlineMail className="h-12 w-12" />
         </a>
-      </div>
-
-      <div>
-        {client.map((post) => (
-          <div key={post.slug.current}>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-          </div>
-        ))}
       </div>
     </main>
   );

@@ -8,10 +8,6 @@ export async function getSanityClient() {
   });
 
   return client.fetch(
-    groq`*[_type == "post"]{
-        title,
-        slug,
-        body
-        }`
+    groq`    *[_type == "post"]{title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[0...3]`
   );
 }
