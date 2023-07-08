@@ -62,7 +62,7 @@ export default async function Home() {
             <Link
               href={`/blog/${post.slug}`}
               key={post._id}
-              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
+              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 p-4 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
             >
               <div className="mb-2">
                 <img
