@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
 import { getSanityClient } from "../sanity/sanity-utils";
+import Link from "next/link";
 
 export default async function Home() {
   const client = await getSanityClient();
@@ -21,7 +22,7 @@ export default async function Home() {
         <Image src="/bio.png" alt="bio" width={200} height={200} />
       </div>
       <div className=" text-justify max-w-lg mt-12">
-        <h1 className="font-bold text-2xl mb-2">About</h1>
+        <h1 className="font-bold text-2xl mb-4">About</h1>
         <p>
           I founded and{" "}
           <span>
@@ -54,11 +55,12 @@ export default async function Home() {
       </div>
 
       {/* Blog cards */}
-      <div className="mt-12">
-        <h1 className="font-bold text-2xl mb-2">Sometimes I write stuff</h1>
+      <div className="flex flex-col mt-12 gap-4">
+        <h1 className="font-bold text-2xl">Sometimes I write stuff</h1>
         <div className="flex md:flex-nowrap flex-wrap gap-4 max-w-lg sm:justify-start">
           {client.map((post) => (
-            <div
+            <Link
+              href={`/blog/${post.slug}`}
               key={post._id}
               className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
             >
@@ -76,9 +78,15 @@ export default async function Home() {
               <p className="text-gray-500 text-sm ml-2">
                 {formatPublishedDate(post.publishedAt)}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
+        <Link
+          href="/blog"
+          className="text-blue-500 hover:underline hover:cursor-pointer text-center"
+        >
+          More posts
+        </Link>
       </div>
 
       {/* Contact Me */}
