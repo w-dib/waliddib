@@ -5,7 +5,6 @@ import { getSanityClient } from "../sanity/sanity-utils";
 
 export default async function Home() {
   const client = await getSanityClient();
-  // console.log(client);
   function formatPublishedDate(publishedAt) {
     const date = new Date(publishedAt);
     return date.toLocaleDateString("en-US", {
@@ -16,7 +15,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col bg-slate-50 items-center w-full h-screen px-12">
+    <main className="flex flex-col bg-slate-50 items-center w-full h-full px-12">
       {/* About Me */}
       <div className="mt-12 w-40 h-40">
         <Image src="/bio.png" alt="bio" width={200} height={200} />
@@ -49,8 +48,8 @@ export default async function Home() {
           </span>{" "}
           5M USD for another B2C InsurTech called Hala Insurance, which sold 3M
           USD in policies, but ultimately returned investor funds and shut down.
-          Currently learning to code as a hobbyist using Firebase, Next.js, and
-          TailwindCSS.
+          Currently working on my next venture. I spend my free time learning to
+          code for fun using Next.js and TailwindCSS.
         </p>
       </div>
 
@@ -63,7 +62,7 @@ export default async function Home() {
               key={post._id}
               className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
             >
-              <div className="mb-6">
+              <div className="mb-2">
                 <img
                   src={post.mainImage}
                   className="rounded-t-lg w-full h-56 object-cover"
@@ -71,7 +70,7 @@ export default async function Home() {
                 />
               </div>
 
-              <h3 className="ml-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h3 className="ml-2 mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                 {post.title}
               </h3>
               <p className="text-gray-500 text-sm ml-2">
@@ -83,7 +82,7 @@ export default async function Home() {
       </div>
 
       {/* Contact Me */}
-      <div className="flex mt-12 justify-around w-64">
+      <div className="flex my-12 justify-around w-64">
         <a
           href="https://www.linkedin.com/in/wdanieldib/"
           target="_blank"
