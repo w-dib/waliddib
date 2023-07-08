@@ -62,7 +62,7 @@ export default async function Home() {
             <Link
               href={`/blog/${post.slug}`}
               key={post._id}
-              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 p-4 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
+              className="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 hover:shadow-xl hover:border-gray-300"
             >
               <div className="mb-2">
                 <img
@@ -72,10 +72,10 @@ export default async function Home() {
                 />
               </div>
 
-              <h3 className="ml-2 mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+              <h3 className="px-1 ml-1 mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                 {post.title}
               </h3>
-              <p className="text-gray-500 text-sm ml-2">
+              <p className="text-gray-500 text-sm ml-1 mb-2 px-1">
                 {formatPublishedDate(post.publishedAt)}
               </p>
             </Link>

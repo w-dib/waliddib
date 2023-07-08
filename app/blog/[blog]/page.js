@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { RichTextComponents } from "@/components/RichTextComponents";
 import { getBlog } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export default async function BlogPage({ params }) {
   const blog = await getBlog(slug);
 
   return (
-    <div className="mx-auto flex-col items-center max-w-4xl h-full px-12">
+    <article className="mx-auto flex-col items-center max-w-4xl h-full px-12">
       <Link href="/">
         <p className="text-blue-500 hover:underline my-4">Back to homepage</p>
       </Link>
@@ -34,11 +35,11 @@ export default async function BlogPage({ params }) {
       />
 
       <div className="bg-slate-50 border rounded-md px-6 py-6 prose prose-lg mt-4 text-justify mx-auto">
-        <PortableText value={blog.body} />
+        <PortableText value={blog.body} components={RichTextComponents} />
       </div>
       <Link href="/">
         <p className="text-blue-500 hover:underline my-4">Back to homepage</p>
       </Link>
-    </div>
+    </article>
   );
 }
