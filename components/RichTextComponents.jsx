@@ -64,6 +64,7 @@ export const RichTextComponents = {
         <Link
           href={value.href}
           rel={rel}
+          target="_blank"
           className="text-blue-500 hover:text-blue-700"
         >
           {children}
