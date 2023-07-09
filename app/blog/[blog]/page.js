@@ -28,6 +28,7 @@ export default async function BlogPage({ params }) {
       <p className="text-gray-500 text-sm">
         {formatPublishedDate(blog.publishedAt)}
       </p>
+
       <img
         className="w-full h-96 object-cover mt-4 rounded-md"
         src={blog.mainImage}
