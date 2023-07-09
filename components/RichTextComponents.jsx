@@ -4,8 +4,8 @@ import { getImageDimensions } from "@sanity/asset-utils";
 import Link from "next/link";
 
 const imageBuilder = urlBuilder({
-  projectId: "tbcelk7e", // Replace with your Sanity project ID
-  dataset: "production", // Replace with your Sanity dataset
+  projectId: "tbcelk7e",
+  dataset: "production",
 });
 
 export const RichTextComponents = {
@@ -27,38 +27,33 @@ export const RichTextComponents = {
   },
 
   block: {
-    // Ex. 1: customizing common block types
-    h1: ({ children }) => <h1 className="text-2xl text-red-400">{children}</h1>,
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-purple-500">{children}</blockquote>
-    ),
-
-    // Ex. 2: rendering custom styles
-    customHeading: ({ children }) => (
-      <h2 className="text-lg text-primary text-purple-700">{children}</h2>
-    ),
-  },
-  block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-bold my-4">{children}</h1>
+      <h1 className="text-4xl font-bold my-4 text-left">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-bold my-4">{children}</h2>
+      <h2 className="text-3xl font-bold my-4 text-left">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-bold my-4">{children}</h3>
+      <h3 className="text-2xl font-bold my-4 text-left">{children}</h3>
     ),
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 pl-4 my-4 italic text-gray-700 border-gray-300">
         {children}
       </blockquote>
     ),
-    ul: ({ children }) => <ul className="list-disc ml-8 my-4">{children}</ul>,
-    ol: ({ children }) => (
+    normal: ({ children }) => <p className="my-4">{children}</p>,
+  },
+
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc ml-8 my-4">{children}</ul>
+    ),
+    number: ({ children }) => (
       <ol className="list-decimal ml-8 my-4">{children}</ol>
     ),
-    li: ({ children }) => <li className="mb-2">{children}</li>,
-    p: ({ children }) => <p className="text-xl my-4">{children}</p>,
+    checkmarks: ({ children }) => (
+      <ol className="m-auto text-lg">{children}</ol>
+    ),
   },
   marks: {
     link: ({ children, value }) => {
