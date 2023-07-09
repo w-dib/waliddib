@@ -3,6 +3,7 @@ import { RichTextComponents } from "@/components/RichTextComponents";
 import { getBlog } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import { Metadata, ResolvingMetadata } from "next";
 
 export default async function BlogPage({ params }) {
   function formatPublishedDate(publishedAt) {
@@ -43,4 +44,14 @@ export default async function BlogPage({ params }) {
       </Link>
     </article>
   );
+}
+
+export async function generateMetadata({ params }) {
+  const slug = params.blog;
+  const blog = await getBlog(slug);
+  return {
+    title: `Blog - ${blog.title}`,
+    description: blog.description,
+    image: blog.mainImage,
+  };
 }
