@@ -18,7 +18,7 @@ export default async function BlogPage({ params }) {
   const blog = await getBlog(slug);
 
   return (
-    <article className="mx-auto flex-col items-center w-screen md:max-w-4xl h-full px-4 md:px-12">
+    <article className="mx-auto p-4 bg-white flex-col items-center w-screen md:max-w-4xl h-full md:px-12">
       <Link href="/">
         <p className="text-blue-500 hover:underline my-4">Back to homepage</p>
       </Link>

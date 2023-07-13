@@ -16,7 +16,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col bg-slate-50 items-center w-full h-full px-12">
+    <main className="flex flex-col items-center w-full h-full px-12">
       {/* About Me */}
       <div className="mt-12 w-40 h-40">
         <Image src="/bio.png" alt="bio" width={200} height={200} />
