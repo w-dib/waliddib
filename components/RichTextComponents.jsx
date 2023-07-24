@@ -32,19 +32,15 @@ export const RichTextComponents = {
       const language = value.language;
 
       return (
-        <div>
-          <div className="flex justify-between ">
-            <p className="opacity-70">{filename}</p>
-            <p>
-              language: <span className="opacity-70">{language}</span>
+        <div className="bg-gray-900 rounded-lg p-4 my-4">
+          <div className="flex justify-between mb-2">
+            <p className="text-gray-400">{filename}</p>
+            <p className="text-gray-400">
+              language: <span className="text-white">{language}</span>
             </p>
           </div>
-          <pre className="p-2">
-            <code>
-              {/* this method has no syntax highlighting,
-    look below for that */}
-              {code}
-            </code>
+          <pre className="p-2 bg-gray-800 rounded-lg overflow-auto">
+            <code className="block text-sm font-mono text-white">{code}</code>
           </pre>
         </div>
       );
