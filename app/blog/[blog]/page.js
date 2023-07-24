@@ -3,7 +3,6 @@ import { RichTextComponents } from "@/components/RichTextComponents";
 import { getBlog } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
-import { Metadata, ResolvingMetadata } from "next";
 
 export default async function BlogPage({ params }) {
   function formatPublishedDate(publishedAt) {

@@ -63,5 +63,19 @@ export default defineType({
       type: "image",
       options: { hotspot: true },
     }),
+
+    defineArrayMember({
+      type: "code",
+      title: "Code Block",
+      options: {
+        language: "javascript",
+        languageAlternatives: [
+          { title: "Javascript", value: "javascript" },
+          { title: "HTML", value: "html" },
+          { title: "CSS", value: "css" },
+        ],
+        withFilename: true,
+      },
+    }),
   ],
 });
