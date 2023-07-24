@@ -24,6 +24,31 @@ export const RichTextComponents = {
         />
       );
     },
+    code: ({ value }) => {
+      console.log("value: ", value);
+
+      const code = value.code;
+      const filename = value.filename;
+      const language = value.language;
+
+      return (
+        <div>
+          <div className="flex justify-between ">
+            <p className="opacity-70">{filename}</p>
+            <p>
+              language: <span className="opacity-70">{language}</span>
+            </p>
+          </div>
+          <pre className="p-2">
+            <code>
+              {/* this method has no syntax highlighting,
+    look below for that */}
+              {code}
+            </code>
+          </pre>
+        </div>
+      );
+    },
   },
 
   block: {
