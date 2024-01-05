@@ -1,3 +1,5 @@
+import { GeistSans } from "geist/font";
+
 export const metadata = {
   title: "Blogs",
   description:
@@ -6,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang='en'>
+      <body className={GeistSans.className}>{children}</body>
     </html>
   );
 }
