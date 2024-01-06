@@ -17,3 +17,9 @@ export default async function BlogList() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Blog - Walid Dib",
+  description: "A list of all my blog posts.",
+  image: "/bio.png",
+};

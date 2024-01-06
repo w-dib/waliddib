@@ -1,5 +1,6 @@
 import { GeistSans } from "geist/font";
 import "./globals.css";
+import "prismjs/themes/prism-tomorrow.css";
 
 export const metadata = {
   title: "Walid Daniel Dib",

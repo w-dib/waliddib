@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
-import { getSanityClient } from "../sanity/sanity-utils";
+import { getRecentBlogs } from "../sanity/sanity-utils";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import BlogCard from "@/components/BlogCard";
@@ -8,20 +8,19 @@ import { socialMediaLink } from "@/utils/lib";
 import CompanyCard from "@/components/CompanyCard";
 
 export default async function Home() {
-  const client = await getSanityClient();
+  const client = await getRecentBlogs();
 
   return (
     <main className='flex flex-col items-center w-full h-full px-12'>
       {/* navbar */}
-      <div className='flex gap-2 font-bold mt-8 max-w-lg w-full text-justify'>
+      <div className='flex gap-4 font-bold mt-8 max-w-lg w-full text-justify'>
         <Link href={"/"}>home</Link>
         <Link href={"/blog"}>blog</Link>
       </div>
       {/* About Me */}
-
-      {/* <div className='mt-12 w-40 h-40'>
-        <Image src='/bio.png' alt='bio' width={200} height={200} />
-      </div> */}
+      <div className='mt-12 w-40 h-40'>
+        <img src='/bio.png' alt='bio' width={200} height={200} />
+      </div>
       <div className='text-justify max-w-lg mt-12'>
         <h1 className='font-bold text-2xl mb-4'>hey, {"I'm"} Walid 👋</h1>
         <p>
@@ -132,4 +131,13 @@ export default async function Home() {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Home - Walid Dib",
+    description:
+      "I founded and sold a blockchain B2B InsurTech called Addenda, and was named Forbes 30 under 30 MENA in 2021. I later raised 5M USD for another B2C InsurTech called Hala Insurance, which sold 3M USD in policies, but ultimately returned investor funds and shut down. Currently working on my next venture. I spend my free time learning to code for fun using Next.js and TailwindCSS.",
+    image: "/bio.png",
+  };
 }

@@ -16,12 +16,28 @@ export async function getBlog(slug) {
 
 export async function getAllBlogs() {
   return sanityClient.fetch(
-    groq`    *[_type == "post"]{title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}`
+    groq`    *[_type == "post"]{title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[]`
   );
 }
 
 export async function getRecentBlogs() {
   return sanityClient.fetch(
-    groq`    *[_type == "post"]{title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[0...3]`
+    groq`*[_type == "post"] | order(publishedAt desc) {
+      title,
+      "name": author->name,
+      _id,
+      "categories": categories[]->title,
+      "slug": slug.current,
+      "mainImage": mainImage.asset->url,
+      publishedAt,
+      body
+    }[0...3]`
+  );
+}
+
+export async function getBlogByCategory(categories) {
+  return sanityClient.fetch(
+    groq`*[_type == "post" && $categories in categories[]->title] | order(publishedAt desc) {title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[]`,
+    { categories }
   );
 }
