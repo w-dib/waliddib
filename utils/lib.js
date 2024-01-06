@@ -27,3 +27,12 @@ export const sanityClient = createClient({
   dataset: "production",
   apiVersion: "2023-06-22",
 });
+
+export const extractTextFromBlock = (block) => {
+  if (block._type === "span") {
+    return block.text || "";
+  } else if (block._type === "block" && block.children) {
+    return block.children.map(extractTextFromBlock).join(" ");
+  }
+  return "";
+};
