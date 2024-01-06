@@ -26,6 +26,7 @@ export const sanityClient = createClient({
   projectId: "tbcelk7e",
   dataset: "production",
   apiVersion: "2023-06-22",
+  useCdn: true,
 });
 
 export const extractTextFromBlock = (block) => {

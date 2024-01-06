@@ -8,8 +8,8 @@ const AuthorBanner = ({ date }) => {
       <div className='flex gap-2 items-center'>
         <img className='h-16 w-16' src='/bio.png' alt='images' />
         <div className='flex flex-col space-y-1'>
-          <h1 className='font-bold text-xl'>Walid Dib</h1>
-          <p className='font-semibold text-sm text-[#00000085]'>
+          <h1 className='font-bold sm:text-xl'>Walid Dib</h1>
+          <p className='font-semibold text-xs sm:font-normal text-[#00000085]'>
             {formatPublishedDate(date)}
           </p>
         </div>
@@ -17,10 +17,10 @@ const AuthorBanner = ({ date }) => {
 
       <div className='flex justify-between items-center gap-4'>
         <Link target='_blank' href={"https://www.linkedin.com/in/wdanieldib/"}>
-          <FaLinkedinIn className='h-6 w-6' />
+          <FaLinkedinIn className='h-4 w-4 sm:h-6 sm:w-6' />
         </Link>
         <Link target='_blank' href={"https://twitter.com/OCdib"}>
-          <FaTwitter className='h-6 w-6' />
+          <FaTwitter className='h-4 w-4 sm:h-6 sm:w-6' />
         </Link>
       </div>
     </div>

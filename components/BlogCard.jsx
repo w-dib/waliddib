@@ -9,7 +9,7 @@ const BlogCard = ({ post }) => {
       className='shadow w-full bg-[#00000008] px-3 py-4 rounded flex items-center justify-between border border-neutral-200 hover:shadow'
     >
       <div className='font-medium'>
-        <h1 className='text-bold text-[16px] text-clip capitalize'>
+        <h1 className='text-bold sm:text-[16px] text-clip capitalize'>
           {post.title}
         </h1>
         <p className='text-neutral-600 mt-1'>

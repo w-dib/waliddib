@@ -55,7 +55,7 @@ export default async function Home() {
       </div>
 
       {/* social media link */}
-      <div className='flex items-center justify-between gap-2 max-w-lg w-full my-8'>
+      <div className='flex flex-col md:flex-row items-center justify-between gap-2 max-w-lg w-full my-8'>
         {socialMediaLink.map((social, i) => (
           <Link
             key={i}
@@ -101,7 +101,7 @@ export default async function Home() {
       {/* company list */}
       <div className='flex flex-col w-full max-w-lg text-start my-8 space-y-5'>
         <p>Companies {"I've"} worked with</p>
-        <div className='flex items-center space-x-4 '>
+        <div className='flex flex-wrap items-center gap-2'>
           <CompanyCard />
           <CompanyCard />
           <CompanyCard />
