@@ -43,7 +43,7 @@ export default async function BlogPage({ params }) {
       {/* recent blogs */}
       <div className='my-12 space-y-6'>
         <h1 className='capitalize text-2xl'>
-          {categoriesedBlogs.length < 1 ? "recent" : "similar"} {"blog's"}
+          {categoriesedBlogs ? "similar" : "recent"} {"blog's"}
         </h1>
         <div className='flex flex-col gap-4 '>
           {blogs.map((post) => (
