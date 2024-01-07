@@ -14,8 +14,11 @@ export default async function BlogPage({ params }) {
   const slug = params.blog;
   const blog = await getBlog(slug);
   const recentBlogs = await getRecentBlogs();
-  const categoriesedBlogs = await getBlogByCategory(blog.categories[0]);
-  const blogs = categoriesedBlogs ? categoriesedBlogs : recentBlogs;
+  const categoriesedBlogs = await getBlogByCategory(
+    blog.categories[0],
+    blog._id
+  );
+  const blogs = categoriesedBlogs.length < 1 ? recentBlogs : categoriesedBlogs;
 
   return (
     <article className='mx-auto p-4 bg-white flex-col items-center w-screen md:max-w-4xl h-full md:px-12'>
@@ -40,7 +43,7 @@ export default async function BlogPage({ params }) {
       {/* recent blogs */}
       <div className='my-12 space-y-6'>
         <h1 className='capitalize text-2xl'>
-          {categoriesedBlogs ? "similar" : "recent"} {"blog's"}
+          {categoriesedBlogs.length < 1 ? "recent" : "similar"} {"blog's"}
         </h1>
         <div className='flex flex-col gap-4 '>
           {blogs.map((post) => (

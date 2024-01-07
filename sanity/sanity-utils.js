@@ -35,9 +35,18 @@ export async function getRecentBlogs() {
   );
 }
 
-export async function getBlogByCategory(categories) {
+export async function getBlogByCategory(categories, excludedBlogId) {
   return sanityClient.fetch(
-    groq`*[_type == "post" && $categories in categories[]->title] | order(publishedAt desc) {title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[]`,
-    { categories }
+    groq`*[_type == "post" && $categories in categories[]->title && _id != $excludedBlogId] | order(publishedAt desc) {
+      title,
+      "name": author->name,
+      _id,
+      "categories": categories[]->title,
+      "slug": slug.current,
+      "mainImage": mainImage.asset->url,
+      publishedAt,
+      body
+    }[]`,
+    { categories, excludedBlogId }
   );
 }
