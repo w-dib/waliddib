@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import AuthorBanner from "@/components/AuthorBanner";
 import BackButton from "@/components/BackButton";
 import BlogCard from "@/components/BlogCard";
 import { RichTextComponents } from "@/components/RichTextComponents";
@@ -8,7 +7,7 @@ import {
   getRecentBlogs,
   getBlogByCategory,
 } from "@/sanity/sanity-utils";
-import { extractTextFromBlock } from "@/utils/lib";
+import { extractTextFromBlock, formatPublishedDate } from "@/utils/lib";
 import { PortableText } from "@portabletext/react";
 
 export default async function BlogPage({ params }) {
@@ -21,11 +20,13 @@ export default async function BlogPage({ params }) {
   return (
     <article className='mx-auto p-4 bg-white flex-col items-center w-screen md:max-w-4xl h-full md:px-12'>
       <BackButton />
-      <AuthorBanner date={blog.publishedAt} />
 
-      <h1 className='my-2text-2xl font-extrabold tracking-tight text-slate-900 md:text-4xl'>
+      <h1 className='my-2 text-2xl font-extrabold tracking-tight text-slate-900 md:text-4xl'>
         {blog.title}
       </h1>
+      <p className='text-gray-500 text-sm'>
+        {formatPublishedDate(blog.publishedAt)}
+      </p>
 
       <img
         className='w-full h-96 object-contain rounded-md my-2'
