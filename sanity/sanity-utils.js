@@ -20,9 +20,9 @@ export async function getAllBlogs() {
   );
 }
 
-export async function getRecentBlogs() {
-  return sanityClient.fetch(
-    groq`*[_type == "post"] | order(publishedAt desc) {
+export async function getRecentBlogs(excludedBlogId) {
+  const query = excludedBlogId
+    ? groq`*[_type == "post" && _id != $excludedBlogId] | order(publishedAt desc) {
       title,
       "name": author->name,
       _id,
@@ -32,12 +32,7 @@ export async function getRecentBlogs() {
       publishedAt,
       body
     }[0...3]`
-  );
-}
-
-export async function getBlogByCategory(categories, excludedBlogId) {
-  return sanityClient.fetch(
-    groq`*[_type == "post" && $categories in categories[]->title && _id != $excludedBlogId] | order(publishedAt desc) {
+    : groq`*[_type == "post" ] | order(publishedAt desc) {
       title,
       "name": author->name,
       _id,
@@ -46,7 +41,30 @@ export async function getBlogByCategory(categories, excludedBlogId) {
       "mainImage": mainImage.asset->url,
       publishedAt,
       body
-    }[]`,
-    { categories, excludedBlogId }
-  );
+    }[0...3]`;
+  return sanityClient.fetch(query, {
+    excludedBlogId,
+  });
+}
+
+export async function getBlogByCategory(categories, excludedBlogId) {
+  let topBlogs = [];
+  for (const category of categories) {
+    const result = await sanityClient.fetch(
+      groq`*[_type == "post" && $category in categories[]->title && _id != $excludedBlogId] | order(count(categories[]->title) desc, publishedAt desc) {
+        title,
+        "name": author->name,
+        _id,
+        "categories": categories[]->title,
+        "slug": slug.current,
+        "mainImage": mainImage.asset->url,
+        publishedAt,
+        body
+      }[0...3]`,
+      { category, excludedBlogId }
+    );
+    topBlogs = topBlogs.concat(result);
+  }
+
+  return topBlogs.slice(0, 3);
 }

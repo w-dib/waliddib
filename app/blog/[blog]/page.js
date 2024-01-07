@@ -13,11 +13,8 @@ import { PortableText } from "@portabletext/react";
 export default async function BlogPage({ params }) {
   const slug = params.blog;
   const blog = await getBlog(slug);
-  const recentBlogs = await getRecentBlogs();
-  const categoriesedBlogs = await getBlogByCategory(
-    blog.categories[0],
-    blog._id
-  );
+  const recentBlogs = await getRecentBlogs(blog._id);
+  const categoriesedBlogs = await getBlogByCategory(blog.categories, blog._id);
   const blogs = categoriesedBlogs.length < 1 ? recentBlogs : categoriesedBlogs;
 
   return (
@@ -43,11 +40,11 @@ export default async function BlogPage({ params }) {
       {/* recent blogs */}
       <div className='my-12 space-y-6'>
         <h1 className='capitalize text-2xl'>
-          {categoriesedBlogs ? "similar" : "recent"} {"blog's"}
+          {categoriesedBlogs.length < 1 ? "recent" : "similar"} {"blog's"}
         </h1>
         <div className='flex flex-col gap-4 '>
           {blogs.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <BlogCard key={post._id} post={post} />
           ))}
         </div>
       </div>
