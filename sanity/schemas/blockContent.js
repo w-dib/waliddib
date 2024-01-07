@@ -1,4 +1,5 @@
 import { defineType, defineArrayMember } from "sanity";
+import { CiTwitter } from "react-icons/ci";
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -63,19 +64,25 @@ export default defineType({
       type: "image",
       options: { hotspot: true },
     }),
-
     defineArrayMember({
       type: "code",
       title: "Code Block",
       options: {
-        language: "javascript",
-        languageAlternatives: [
-          { title: "Javascript", value: "javascript" },
-          { title: "HTML", value: "html" },
-          { title: "CSS", value: "css" },
-        ],
         withFilename: true,
       },
+    }),
+    defineArrayMember({
+      name: "twitter",
+      type: "object",
+      title: "Embed",
+      icon: CiTwitter,
+      fields: [
+        {
+          name: "id",
+          type: "string",
+          title: "Twitter tweet ID",
+        },
+      ],
     }),
   ],
 });
