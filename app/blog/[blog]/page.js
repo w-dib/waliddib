@@ -54,13 +54,13 @@ export default async function BlogPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const slug = params.blog;
-  const blog = await getBlog(slug);
-  const plainTextBody = blog.body.map(extractTextFromBlock).join(" ");
+  const { blog: slug } = params;
+  const blogInfo = await getBlog(slug);
+  const plainTextBody = blogInfo.body.map(extractTextFromBlock).join(" ");
   const truncatedDescription = plainTextBody.substring(0, 180);
   return {
-    title: `Blog - ${blog.title}`,
+    title: `Blog - ${blogInfo.title}`,
     description: truncatedDescription,
-    image: blog.mainImage,
+    image: blogInfo.mainImage,
   };
 }
