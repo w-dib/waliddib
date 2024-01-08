@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import BlogCard from "@/components/BlogCard";
 import { socialMediaLink } from "@/utils/lib";
-import CompanyCard from "@/components/CompanyCard";
+// import CompanyCard from "@/components/CompanyCard";
 import Image from "next/image";
 
 export default async function Home() {
