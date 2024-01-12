@@ -16,7 +16,7 @@ export async function getBlog(slug) {
 
 export async function getAllBlogs() {
   return sanityClient.fetch(
-    groq`    *[_type == "post"]{title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[]`
+    groq`    *[_type == "post"] | order(publishedAt desc) {title, "name": author->name, _id, "categories": categories[]->title, "slug": slug.current, "mainImage": mainImage.asset->url, publishedAt, body}[]`
   );
 }
 
